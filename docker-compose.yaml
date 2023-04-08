@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  postgres:
+    container_name: postgres_db
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=jtiulm
+    ports:
+      - "5432:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+      
+volumes:
+  data:
