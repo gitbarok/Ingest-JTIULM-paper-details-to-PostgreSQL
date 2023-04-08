@@ -1,6 +1,6 @@
 ## INGEST PAPER DETAILS JTIULM
 - python 3.9
-- postgreSQL inside docker-compose 2.15.1 (optional) or you can install postgresSQL without docker and you can change paramater DB on **script.py** with your postgresSQL parameter on your local.
+- postgreSQL inside docker-compose 2.15.1 (optional) or you can install PostgreSQL without docker and you can change paramater DB on **script.py** with your PostgreSQL parameter on your local.
 ```
 con = psycopg2.connect(
         database="YOUR_DB",
