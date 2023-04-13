@@ -1,6 +1,7 @@
 import pandas as pd
 import psycopg2
 import requests
+import logging
 
 from bs4 import BeautifulSoup
 
@@ -55,10 +56,11 @@ def scrape_jtiulm():
 
 
 def main():
+    logging.basicConfig(filename='app.log', filemode='w', format='%(asctime)s - %(message)s',datefmt='%d-%b-%y %H:%M:%S', level=logging.INFO)
     conn, cur = create_db()
-    print("SCRAPING STARTED")
+    logging.info("Scraping started")
     df = scrape_jtiulm()
-    print("SCRAPING FINISHED")
+    logging.info("Scraping finished")
     sql_script = ("""INSERT INTO paper_details(
     title,
     author,
@@ -66,7 +68,7 @@ def main():
     VALUES (%s, %s, %s)
     """)
     for i, data in df.iterrows():
-        print(f'insert {i+1} row from {df.shape[0]} total row')
+        logging.info(f'insert {i+1} row from {df.shape[0]} total row')
         cur.execute(sql_script, list(data))
     conn.commit()
 
